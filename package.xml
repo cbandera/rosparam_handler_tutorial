@@ -1,0 +1,22 @@
+<package format="2">
+    <name>rosparam_handler_tutorial</name>
+    <version>0.0.1</version>
+    <description>A demo node for the rosparam_handler package</description>
+
+    <license>BSD</license>
+
+    <maintainer email="cbandera@posteo.de">Claudio Bandera</maintainer>
+    <author email="cbandera@posteo.de">Claudio Bandera</author>
+    <url type="repository">https://github.com/cbandera/rosparam_handler_tutorial.git</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>rosparam_handler</build_depend>
+    <depend>dynamic_reconfigure</depend>
+    <depend>roscpp</depend>
+    <depend>roslib</depend>
+    <depend>nodelet</depend>
+    <export>
+        <nodelet plugin="${prefix}/nodelet_plugins.xml" /><!-- Other tools can request additional information be placed here -->
+    </export>
+
+</package>

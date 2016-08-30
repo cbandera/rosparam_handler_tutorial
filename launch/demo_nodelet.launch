@@ -1,0 +1,22 @@
+<launch>
+
+    <arg name="config" default="$(find rosparam_handler_tutorial)/launch/params/demo_parameters.yaml"/>
+    <arg name="nodelet_manager_name" default="nodelet_manager_demo"/>
+    <arg name="start_nodelet_manager" default="true"/>
+    <arg name="nodelet_name" default="demo"/>
+
+    <!-- Nodelet manager (if enabled) -->
+    <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)" args="manager" output="screen"
+          if="$(arg start_nodelet_manager)"/>
+
+    <!-- Demo -->
+    <node pkg="nodelet" type="nodelet" name="$(arg nodelet_name)"
+          args="load rosparam_handler_tutorial/DemoNodelet $(arg nodelet_manager_name)" output="screen" required="true">
+        <rosparam command="load" file="$(arg config)"/>
+    </node>
+
+
+    <node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+
+</launch>

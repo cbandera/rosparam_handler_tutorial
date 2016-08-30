@@ -1,0 +1,6 @@
+<library path="lib/libdemo_nodelet">
+<class name="rosparam_handler_tutorial/DemoNodelet"
+       type="rosparam_handler_tutorial::DemoNodelet" base_class_type="nodelet::Nodelet">
+  <description></description>
+</class>
+</library>

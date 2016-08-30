@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+from rosparam_handler.parameter_generator_catkin import *
+gen = ParameterGenerator()
+
+gen.add("rate", paramtype="int",description="Rate for timer", default=2, min=1, max=10, configurable=True)
+
+# Parameters with different types
+gen.add("int_param", paramtype="int", description="An Integer parameter")
+gen.add("double_param", paramtype="double",description="A double parameter")
+gen.add("str_param", paramtype="std::string", description="A string parameter",  default="Hello World")
+gen.add("bool_param", paramtype="bool", description="A Boolean parameter")
+gen.add("vector_param", paramtype="std::vector<double>", description="A vector parameter")
+gen.add("map_param", paramtype="std::map<std::string,std::string>", description="A map parameter")
+
+# Default min and max values
+gen.add("weight", paramtype="double",description="Weight can not be negative", min=0.0)
+gen.add("age", paramtype="int",description="Normal age of a human is inbetween 0 and 100", min=0, max=100)
+gen.add("default_param", paramtype="std::string",description="Parameter with default value", default="Hello World")
+
+# Constant and configurable parameters
+gen.add("optimal_parameter", paramtype="double", description="Optimal parameter, can not be set via rosparam", default=10, constant=True)
+gen.add("configurable_parameter", paramtype="double", description="This parameter can be set via dynamic_reconfigure", configurable=True)
+
+# Defining the namespace
+#gen.add("global_parameter", paramtype="std::string", description="This parameter is defined in the global namespace", global_scope=True)
+
+# Full signature
+gen.add("dummy", paramtype="double", description="My Dummy parameter", level=0, edit_method="", default=5.2, min=0, max=10, configurable=True, global_scope=False, constant=False)
+
+# Add an enum:
+gen.add_enum("my_enum", description="My first self written enum", entry_strings=["Small", "Medium", "Large", "ExtraLarge"], default="Medium")
+
+#Syntax : Package, Node, Config Name(The final name will be MyDummyConfig)
+exit(gen.generate("rosparam_handler_tutorial", "demo_node", "Demo"))
