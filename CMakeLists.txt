@@ -18,6 +18,7 @@ generate_ros_parameter_files(cfg/Demo.params)
 
 # Create package
 catkin_package()
+include_directories(${catkin_INCLUDE_DIRS})
 
 # Node
 add_executable(demo src/demo/demo.cpp src/demo/demo_node.cpp)
