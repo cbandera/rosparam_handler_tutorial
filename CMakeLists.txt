@@ -13,6 +13,9 @@ else()
 	message(FATAL_ERROR "Compiler does not have c++14 support. Use at least g++4.9 or Visual Studio 2013 and newer.")
 endif()
 
+# python module
+catkin_python_setup()
+
 # Generate parameter files
 generate_ros_parameter_files(cfg/Demo.params)
 
@@ -34,3 +37,6 @@ install(TARGETS demo
 add_library(demo_nodelet src/demo/demo.cpp src/demo/demo_nodelet.cpp)
 target_link_libraries(demo_nodelet ${catkin_LIBRARIES})
 install(TARGETS demo_nodelet LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+
+catkin_install_python(PROGRAMS scripts/demo.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
