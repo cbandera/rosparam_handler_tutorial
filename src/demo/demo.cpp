@@ -15,6 +15,7 @@ Demo::Demo(ros::NodeHandle node_handle, ros::NodeHandle private_node_handle)
      */
     timer_ = private_node_handle.createTimer(ros::Duration(1. / params_.rate), &Demo::timerCallback, this);
     reconfigSrv_.setCallback(boost::bind(&Demo::reconfigureRequest, this, _1, _2));
+    params_.my_subscriber->registerCallback(&Demo::messageCallback, this);
 }
 
 /*
@@ -25,6 +26,14 @@ Demo::Demo(ros::NodeHandle node_handle, ros::NodeHandle private_node_handle)
 void Demo::timerCallback(const ros::TimerEvent& event) {
     ROS_INFO_STREAM("Timer callback. configurable_parameter = " << params_.configurable_parameter
                                                                 << ". Enum: " << params_.my_enum);
+    auto msg = boost::make_shared<std_msgs::Header>();
+    msg->stamp = event.current_real;
+    params_.my_publisher.publish(msg);
+}
+
+void Demo::messageCallback(const std_msgs::Header::ConstPtr& msg)
+{
+    ROS_INFO_STREAM("Received a message with time " << msg->stamp << "!");
 }
 
 /**

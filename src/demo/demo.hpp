@@ -17,6 +17,7 @@ private:
     dynamic_reconfigure::Server<DemoConfig> reconfigSrv_; // Dynamic reconfiguration service
 
     void timerCallback(const ros::TimerEvent& event);
+    void messageCallback(const std_msgs::Header::ConstPtr& msg);
     void reconfigureRequest(DemoConfig&, uint32_t);
 };
 

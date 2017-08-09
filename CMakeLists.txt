@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rosparam_handler_tutorial)
-find_package(catkin REQUIRED COMPONENTS roscpp rosparam_handler dynamic_reconfigure )
+find_package(catkin REQUIRED COMPONENTS roscpp rosparam_handler dynamic_reconfigure message_filters std_msgs)
 
 # set compiler flags
 include(CheckCXXCompilerFlag)
