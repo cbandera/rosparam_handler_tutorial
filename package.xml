@@ -15,6 +15,8 @@
     <depend>roscpp</depend>
     <depend>roslib</depend>
     <depend>nodelet</depend>
+    <depend>std_msgs</depend>
+    <depend>message_filters</depend>
     <export>
         <nodelet plugin="${prefix}/nodelet_plugins.xml" /><!-- Other tools can request additional information be placed here -->
     </export>

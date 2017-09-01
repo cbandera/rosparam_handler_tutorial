@@ -32,5 +32,9 @@ gen.add("dummy", paramtype="double", description="My Dummy parameter", level=0, 
 # Add an enum:
 gen.add_enum("my_enum", description="My first self written enum", entry_strings=["Small", "Medium", "Large", "ExtraLarge"], default="Medium")
 
+# Create subscribers/publishers
+gen.add_subscriber("my_subscriber", message_type="std_msgs::Header", description="subscriber", configurable=True, default_topic="publisher_topic")
+gen.add_publisher("my_publisher", message_type="std_msgs::Header", description="publisher", default_topic="publisher_topic")
+
 #Syntax : Package, Node, Config Name(The final name will be MyDummyConfig)
 exit(gen.generate("rosparam_handler_tutorial", "demo_node", "Demo"))
