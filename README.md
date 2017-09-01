@@ -11,3 +11,8 @@ or run it as a nodelet
 ```shell
 roslaunch rosparam_handler_tutorial demo_nodelet.launch
 ```
+
+or as python module
+```shell
+roslaunch rosparam_handler_tutorial demo_node_python.launch
+```
