@@ -1,0 +1,17 @@
+### This file was generated using the rosparam_handler generate_yaml script.
+
+# Name:	rate
+# Desc:	Rate for timer
+# Type:	int
+# [min,max]:	[1/10]
+rate: 2
+
+# Name:	str_param
+# Desc:	A string parameter
+# Type:	std::string
+str_param: test another string
+
+# Name:	vector_int_param
+# Desc:	A vector of int parameter
+# Type:	std::vector<int>
+vector_int_param: [1, 2, 3]

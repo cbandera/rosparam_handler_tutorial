@@ -17,7 +17,10 @@ endif()
 catkin_python_setup()
 
 # Generate parameter files
-generate_ros_parameter_files(cfg/Demo.params)
+generate_ros_parameter_files(cfg/Demo.params
+                             cfg/Foo.params
+                             cfg/Bar.params
+                             )
 
 # Create package
 catkin_package()
@@ -32,6 +35,16 @@ install(TARGETS demo
 		LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 		RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 		)
+
+# Demo Ptr Node
+add_executable(demo_ptr src/demo/demo_ptr.cpp src/demo/demo_ptr_node.cpp)
+add_dependencies(demo_ptr ${catkin_EXPORTED_TARGETS} rosparam_handler_tutorial_gencfg)
+target_link_libraries(demo_ptr ${catkin_LIBRARIES})
+install(TARGETS demo_ptr
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+    )
 
 # Nodelet
 add_library(demo_nodelet src/demo/demo.cpp src/demo/demo_nodelet.cpp)

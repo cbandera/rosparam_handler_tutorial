@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="foo_config" default="$(find rosparam_handler_tutorial)/launch/params/foo_parameters.yaml" />
+  <arg name="bar_config" default="$(find rosparam_handler_tutorial)/launch/params/bar_parameters.yaml" />
+
+  <node pkg="rosparam_handler_tutorial" type="demo_ptr" name="demo_ptr" output="screen">
+    <rosparam command="load" file="$(arg foo_config)" ns="foo"/>
+    <rosparam command="load" file="$(arg bar_config)" ns="bar"/>
+  </node>
+
+  <node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+</launch>
