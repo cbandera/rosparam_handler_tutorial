@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+####### workaround so that the module is found #######
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__),"../../src"))
+######################################################
+
+from rosparam_handler.parameter_generator_catkin import *
+gen = ParameterGenerator()
+
+gen.add("rate", paramtype="int",description="Rate for timer", default=2, min=1, max=10, configurable=True)
+
+# Parameters with different types
+gen.add("str_param", paramtype="std::string", description="A string parameter", default="param b", configurable=True)
+gen.add("vector_int_param", paramtype="std::vector<int>", description="A vector of int parameter", default=[1,2,3])
+
+#Syntax : Package, Node, Config Name(The final name will be MyDummyConfig)
+exit(gen.generate("rosparam_handler_tutorial", "demo_ptr_node", "Bar"))
